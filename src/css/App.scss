@@ -1,0 +1,335 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+  list-style: none;
+  text-decoration: none;
+  scroll-behavior: smooth;
+}
+
+/* Functions and their params:
+- flex($align, $justify, $direction: row) */
+
+@import "./includes/_mixin";
+@import "./includes/_animations";
+
+@media (min-width: 480px) {
+  #root {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: repeat(6, auto);
+
+    p {
+      font-size: 1.7vw;
+      margin: 1vw 0 1vw 0;
+    }
+
+    h1 {
+      font-size: 2.3vw;
+      margin: 2vw 0 2vw 0;
+    }
+
+  }
+
+  [data-animate] {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 1s;
+  }
+
+  .animate {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  nav {
+    @include flex(center, space-between);
+    position: fixed;
+    background-color: rgb(26, 26, 26);
+    height: 4rem;
+    width: 100%;
+    padding: 0 1.5rem 0 2rem;
+    box-shadow: 0 1px 3px rgb(104, 104, 104);
+    z-index: 1000;
+
+    img {
+      height: 2rem;
+      width: 2rem;
+    }
+
+    ul {
+      @include flex(center, space-between);
+
+      li {
+        margin: 0 0.5rem 0 0.5rem;
+      }
+
+      a {
+        color: white;
+      }
+    }
+  }
+
+  header {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    height: 40vw;
+    margin: 8vw 0 2vw 0;
+    @include flex(center, center);
+
+    div {
+      h1 {
+        font-size: 3vw !important;
+        animation-name: show-up-right;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.57, -0.01, 0.58, 0.99);
+        animation-fill-mode: forwards;
+      }
+
+      p {
+        animation-name: show-up-right;
+        animation-duration: 1s;
+        animation-timing-function: cubic-bezier(0.57, -0.01, 0.58, 0.99);
+        animation-fill-mode: forwards;
+        animation-delay: 0.1s;
+      }
+    }
+
+    img {
+      height: 25vw;
+      animation-name: show-up-left;
+      animation-duration: 1s;
+      animation-timing-function: cubic-bezier(0.57, -0.01, 0.58, 0.99);
+      animation-fill-mode: forwards;
+    }
+  }
+
+  .about-me {
+    border-top: 1px solid black;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    height: 40vw;
+    @include flex(center, space-between);
+
+    div.description {
+      @include flex(flex-start, center, column);
+      width: 70%;
+      height: 100%;
+    }
+
+    div.social-media-links {
+      @include flex(center, center, column);
+      width: 30%;
+      height: 100%;
+
+      img {
+        width: 3vw;
+        margin: 2rem 0 0 0;
+
+        &:hover {
+          animation: move-up 0.7s ease-out forwards;
+        }
+      }
+    }
+  }
+
+  .portfolio {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    height: 40vw;
+
+    .portfolio-images {
+      @include flex(center, space-between);
+      margin: 2vw 0 0 0;
+
+      img {
+        width: 100%;
+        height: 16vw;
+        box-shadow: 0 1px 4px rgb(145, 145, 145);
+        &:hover {
+          animation: move-up 0.7s ease-out forwards alternate;
+        }
+      }
+
+      h2 {
+        font-size: 1.5vw;
+        margin: 2vw 0 2vw 0;
+      }
+
+      .flex-images {
+        @include flex(center, space-between, column);
+        margin: 2vw 0 0 0;
+      }
+    }
+  }
+
+  .contact {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    margin: 2vw 0 2vw 0;
+
+    h3 {
+      margin: 2vw 0 2vw 0;
+    }
+
+    a {
+      @include flex(center, flex-start);
+      color: black;
+
+      img {
+        width: 3vw;
+        height: 3vw;
+        margin-right: 2vw;
+      }
+    }
+  }
+
+  footer {
+    grid-column: 1 / 4;
+    grid-row: 5 / 6;
+    margin: 2rem 0 0 0;
+    height: 20vh;
+    background-color: black;
+  }
+}
+
+// Smartphone devices
+
+@media (max-width: 480px) {
+  #root {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    grid-template-rows: repeat(6, auto);
+
+    p {
+      font-size: 2.5vw;
+      margin: 1vw 0 1vw 0;
+    }
+
+    h1 {
+      font-size: 3vw;
+      margin: 2vw 0 2vw 0;
+    }
+
+  }
+
+  nav {
+    @include flex(center, center);
+    position: fixed;
+    background-color: rgb(26, 26, 26);
+    height: 10vw;
+    width: 100%;
+    padding: 0 1.5rem 0 2rem;
+    box-shadow: 0 1px 3px rgb(104, 104, 104);
+    z-index: 1000;
+
+    img {
+      height: 18px;
+      width: 18px;
+    }
+
+    ul {
+      display: none;
+      visibility: hidden;
+    }
+  }
+
+  header {
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    height: 40vw;
+    margin: 15vw 0 2vw 0;
+    text-align: center;
+    @include flex(center, center, column);
+
+    img {
+      height: 30vw;
+      width: 30vw;
+      margin: 0 10px 0 10px
+    }
+  }
+
+  .about-me {
+    border-top: 1px solid black;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    @include flex(center, space-between, column);
+
+    div.description {
+      @include flex(center, center, column);
+    }
+
+    div.social-media-links {
+      @include flex(center, center, row);
+
+      img {
+        width: 7vw;
+        height: 7vw;
+        margin: 3vw 2vw 3vw 2vw;
+      }
+    }
+  }
+
+  .portfolio {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    text-align: center;
+    @include flex(center, center, column);
+
+    .portfolio-images {
+      @include flex(center, center, column);
+      margin: 2vw 0 0 0;
+
+      img {
+        width: 100%;
+        height: 16vw;
+        box-shadow: 0 1px 4px rgb(145, 145, 145);
+      }
+
+      h2 {
+        font-size: 1.5vw;
+        margin: 2vw 0 2vw 0;
+      }
+
+      .flex-images {
+        @include flex(center, space-between, column);
+        margin: 2vw 0 0 0;
+      }
+    }
+  }
+
+  .contact {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    margin: 2vw 0 2vw 0;
+    @include flex(center, space-between, column);
+
+    h3 {
+      margin: 2vw 0 2vw 0;
+      font-size: 1.5vw;
+    }
+
+    a {
+      @include flex(center, flex-start);
+      color: black;
+
+      img {
+        width: 3vw;
+        height: 3vw;
+        margin-right: 2vw;
+      }
+    }
+  }
+
+  footer {
+    grid-column: 1 / 4;
+    grid-row: 5 / 6;
+    margin: 2rem 0 0 0;
+    height: 10vh;
+    background-color: black;
+  }
+
+
+}

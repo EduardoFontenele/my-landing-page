@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import './css/App.css';
+import Main from './components/Main';
 
 function App() {
+  function animateScroll() {
+    const element = document.querySelectorAll('.hidden');
+    const windowTop = window.pageYOffset + (window.innerHeight * 0.80);
+
+    element.forEach((div) => {
+      if ((windowTop) > div.offsetTop) {
+        div.classList.add('animate');
+        div.classList.remove('hidden');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    animateScroll();
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Main />
   );
 }
 
